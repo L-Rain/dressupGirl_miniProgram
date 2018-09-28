@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "popAuthorize": "../../component/authorize/authorize",
+    "saleDiscount": "../../component/discount/discount"
+  }
+}

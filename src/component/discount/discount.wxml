@@ -1,0 +1,37 @@
+<!--component/discount/discount.wxml-->
+<view class="pop_login {{ popShow ? 'pop_login_active' : ''}}">
+  <view class="pop_bg"></view>
+  <view class='login_layout'>
+    <image
+      bindtap="closePop"
+      src="../../images/btn_close.png"
+      class="close_btn"></image>
+    <image class="discount_title" src="../../images/title_bg.png"></image>
+    <view class="discount_layout">
+      <image mode="widthFix" src="{{discountList.preview}}"></image>
+    </view>
+    <view class="items_layout_bg"></view>
+    <view class="items_layout">
+      <image class="page_bg" mode="scaleToFill" src="../../images/index/bg_line.png"></image>
+      <view class="scroll_layout" >
+        <scroll-view scroll-x>
+          <view wx:for="{{discountList.dressupJson}}" wx:key="{{item.dressupId}}">
+            <image src="{{item.thumb}}"></image>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <text class="original_prize" wx:if="{{!alreadyBuy}}">原价￥{{discountList.originPrice}}</text>
+    <view class="buy_btn" bindtap="buyItem">
+      <image class="btn_bg" src="../../images/btn_bg.png"></image>
+      <view class="buy_btn_layout" wx:if="{{!alreadyBuy}}">
+        <image src="../../images/icon_coin.png"></image>
+        <text>限时价</text>
+        <text>￥{{discountList.price}}</text>
+      </view>
+      <view class="buy_btn_layout hasBuy_fixed" wx:else>
+        <text>立即装扮</text>
+      </view>
+    </view>
+  </view>
+</view>

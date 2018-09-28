@@ -1,0 +1,196 @@
+/* component/discount/discount.wxss */
+.pop_login {
+  opacity: 0;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all ease-out 0.3s;
+  .pop_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+  }
+  .login_layout {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transition: all ease-out  0.3s;
+    transform: translate(-50%,100%);
+    width: 600rpx;
+    // height: 300rpx;
+    box-sizing:border-box;
+    padding: 80rpx 70rpx 50rpx;
+    background: #fceef5;
+    border:6rpx solid #f2a1cd;
+    border-radius:40rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #f2a1cd;
+  }
+  text {
+    display: block;
+    margin: 10rpx 0;
+  }
+  .close_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 75rpx;
+    height: 75rpx;
+    transform: translate(40%, -40%);
+  }
+  .login_btn {
+    width: 350rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    color: #fff;
+    margin: 40rpx auto 0;
+    background: #f6c2d9;
+    border: 4rpx solid #f4aac9;
+    border-radius: 50rpx;
+    font-size: 28rpx;
+  }
+  .discount_layout {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    height: 550rpx;
+    box-sizing:border-box;
+    border:6rpx solid #f2a1cd;
+    border-radius:30rpx;
+    overflow: hidden;
+    image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 105%;
+      transform: translate(-50%,-52%);
+    }
+  }
+  .items_layout_bg {
+    position: relative;
+    width: 480rpx;
+    height: 130rpx;
+    background: #f2c0d7;
+    border-radius:20rpx;
+    margin : -50rpx 0 0 -20rpx;
+  }
+  .items_layout {
+    position: relative;
+    width: 500rpx;
+    height: 130rpx;
+    background: #f4aac9;
+    box-sizing:border-box;
+    border:6rpx solid #f2a1cd;
+    border-radius:20rpx;
+    overflow: hidden;
+    margin: -140rpx 0 40rpx -28rpx;
+    image {
+      width: 100%;
+      height: 100%;
+    }
+    .scroll_layout {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      // display: flex;
+      // align-items: center;
+      // flex-direction: row;
+      scroll-view {
+        width: 100%;
+        height: 100%;
+        font-size: 0;
+        line-height: 118rpx;
+        white-space:nowrap;
+        overflow: hidden;
+      }
+      view {
+        display: inline-block;
+        vertical-align: middle;
+        // flex: 1;
+        width: 80rpx;
+        height: 80rpx;
+        margin-left: 15rpx;
+        background: #fff;
+        border-radius: 10rpx;
+        border: 4rpx solid #f2a1cd;
+        text-align: center;
+        image {
+          width: 60rpx;
+          height: 60rpx;
+          vertical-align: -10rpx;
+        }
+      }
+    }
+  }
+  .discount_title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-55%);
+    width: 450rpx;
+    height: 170rpx;
+  }
+  .original_prize {
+    font-size: 26rpx;
+    font-weight: 300;
+    text-decoration:line-through
+  }
+}
+
+.buy_btn {
+  width: 500rpx;
+  height: 120rpx;
+  line-height: 95rpx;
+  margin-left: -28rpx;
+  position: relative;
+  .btn_bg, .buy_btn_layout{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .buy_btn_layout {
+    text-align: center;
+    image {
+      width: 46rpx;
+      height: 46rpx;
+      margin: 0 25rpx;
+    }
+    image, text {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    text {
+      font-size: 36rpx;
+      // font-weight: 200;
+      margin-right: 15rpx;
+      color: #fff;
+    }
+  }
+  .hasBuy_fixed {
+    text {
+      margin-right: 0;
+    }
+  }
+}
+.pop_login_active {
+  opacity: 1;
+  z-index: 5;
+  .login_layout {
+    opacity: 1;
+    transform: translate(-50%,-47%);
+  }
+}
+

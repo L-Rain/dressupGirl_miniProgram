@@ -1,0 +1,116 @@
+<!--editor.wxml-->
+<import src="../../templates/loading.wxml"/>
+
+ <view class="page edit_page" style='background-image: url({{bgSelected}});'>
+<canvas class="full_canvas" wx:if="{{!canvasHide}}" canvas-id="{{canvasId}}"/>
+<!-- 模特图片展示区 -->
+<view class="main_layout" style="bottom : {{scrollHeight == 300 ? 450 : 150}}rpx">
+  <!-- <image class="bg" src="{{bgSelected}}"></image> -->
+  <view class="model_layout" id="model_layout">
+    <block wx:if="{{itemListShow}}">
+      <image wx:for="{{itemSelected}}"
+             wx:if="{{item.categoryId !== '4'}}"
+             wx:key="item.categoryId"
+             mode="aspectFit"
+             src="{{item.src}}"></image>
+    </block>
+  </view>
+  <!-- 上部按钮 -->
+   <view class="btn_layout top_btns flex_both">
+    <view class="operate_btn top_left_btn" wx:if="{{musicShow}}">
+      <image wx:if="{{musicOpen}}"
+            src="../../images/icons/music.png"
+            bindtap="musicControl"></image>
+      <image wx:else
+            src="../../images/icons/mute.png"
+            bindtap="musicControl"></image></view>
+    <view class="operate_btn top_right_btn"><image src="../../images/icons/download.png" bindtap="generateImage"></image></view>
+  </view>
+  <!-- 下部按钮 -->
+  <view class="btn_layout bottom_btns flex_both">
+    <view class="operate_btn bottom_left_btn {{scrollHeight == 0 ? 'btn_up' : ''}}"><image bindtap="tagUpDown" src="../../images/icons/down.png"></image></view>
+    <view class="operate_btn bottom_left_btn"><image src="../../images/icons/reset.png" bindtap="resetAll"></image></view>
+  </view>
+  <!-- 限时特惠 -->
+  <view class="discount_icon_edit  {{hasDiscount ? 'discount_show' : ''}}"
+        bindtap="discountClick">
+    <image mode="widthFix" src="{{discountIcon}}"></image>
+  </view>
+</view>
+
+<!-- 底部控件 -->
+<view class="item_select_layout">
+    <view class="scroll_layout">
+      <view class="sroll_bar">
+        <scroll-view scroll-x="true" class="tab-h">
+            <view
+              wx:for="{{itemList}}"
+              wx:key="item.categoryId"
+              wx:if="{{item.categoryId !== '1'}}"
+              class="tab-item {{currentTab==index?'active':''}} {{item.isNew > 0 ? 'main_tag_new' : ''}}">
+              <image
+                wx:if="{{currentTab !== index}}"
+                src='{{item.iconUnselected}}'
+                data-current="{{index}}"
+                bindtap="swichNav"></image>
+              <image
+                wx:else
+                src='{{item.iconSelected}}'
+                data-current="{{index}}"
+                bindtap="swichNav"></image>
+            </view>
+        </scroll-view>
+      </view>
+      <swiper class="tab-content" current="{{currentTab}}" duration="0" bindchange="switchTab" style="height : {{scrollHeight}}rpx">
+          <swiper-item wx:for="{{itemList}}" wx:key="item.categoryId" wx:if="{{item.categoryId !== '1'}}">
+              <scroll-view scroll-y="true" class="scoll-h">
+                  <view class="sub_item_layout">
+                    <view class="the_item {{item.categoryId !== '2' && item.categoryId !== '1' && item.categoryId !== '3' && item.categoryId !== '4' ? 'delete_btn' : '' }}"
+                          wx:if="{{item.categoryId !== '2' && item.categoryId !== '1' && item.categoryId !== '3' && item.categoryId !== '4'}}">
+                      <image
+                        mode="aspectFit"
+                        lazy-load="true"
+                        src="../../images/icons/delete.png"
+                        data-categoryId="{{item.categoryId}}"
+                        bindtap="deleteItem"></image>
+                    </view>
+                    <view class="the_item {{itemList[index].categoryId == '4' ? 'is_bg' : ''}}"
+                          wx:for="{{itemList[index].dressupList}}"
+                          wx:for-item="i"
+                          wx:for-index="idx"
+                          wx:key="i">
+                      <image
+                        mode="aspectFit"
+                        src='{{i.thumb}}'
+                        data-type='{{i.type}}'
+                        data-name='{{item.name}}'
+                        data-layerindex='{{i.layerIndex}}'
+                        data-sortindex='{{idx}}'
+                        lazy-load="true"
+                        data-categoryId="{{item.categoryId}}"
+                        data-src='{{i.image}}'
+                        bindtap="itemClick"></image>
+                        <!-- <view class="the_item_layout {{allIcons[currentTab]==idx?'active':''}}"></view> -->
+                          <view class="is_new {{i.isNew > 0 ? 'new_show' : ''}}">N</view>
+                         <view class="the_item_layout {{i.isSelected==1?'active':''}}"></view>
+                    </view>
+                  </view>
+              </scroll-view>
+          </swiper-item>
+      </swiper>
+    </view>
+</view>
+<view class="pop_loading_layout {{ loadingShow ? 'loading_show' : ''}}">
+  <template is="popLoading"/>
+</view>
+<popAuthorize
+          is-login="{{isLoginTemplate}}"
+          authorize-show="{{authorizeShow}}"
+          bindauthorizeclose="authorizeClose"></popAuthorize>
+<saleDiscount
+          discount-detail="{{discountDetail}}"
+          discount-show="{{discountShow}}"
+          has-buy="{{hasBuy}}"
+          bindbuydiscount="buyDiscount"
+          bindloginclose="discountClose"></saleDiscount>
+</view>

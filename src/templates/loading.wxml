@@ -1,0 +1,8 @@
+<!--template/loading.wxml-->
+<template name="popLoading">
+	<view class="pop_loading">
+	    <image
+	          src="../../images/loading.gif">
+	    </image>
+	</view>
+</template>

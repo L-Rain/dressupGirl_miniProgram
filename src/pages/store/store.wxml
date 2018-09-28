@@ -1,0 +1,65 @@
+<!--sotre.wxml-->
+<import src="../../templates/loading.wxml"/>
+
+<view class="page store_page">
+<view class="top_bar" wx:if="{{tagList.length !== 0}}">
+  <scroll-view scroll-x>
+    <view class="top_tag_layout {{currentTab==index?'tag_active':''}}"
+          wx:for="{{tagList}}"
+          wx:key="{{item.categoryId}}"
+          data-current='{{index}}'
+          data-name='{{item.name}}'
+          data-id='{{item.categoryId}}'
+          bindtap="swichTag">
+      <view class="top_tag">
+        <image wx:if="{{currentTab !== index}}"
+                src="{{item.iconUnselected}}"></image>
+        <image wx:else src="{{item.iconSelected}}"></image>
+        <text>{{item.name}}</text>
+      </view>
+      <view wx:if="{{item.newtip > 0}}" class="is_new">N</view>
+    </view>
+  </scroll-view>
+</view>
+<view class="main_content">
+  <view class="list_layout"
+        wx:for="{{cardList}}"
+        wx:key="{{item.packageId}}"
+        data-package="{{item.packageId}}"
+        data-product="{{item.productId}}"
+        data-json='{{item.dressupJson}}'
+        data-type='{{item.unlockType}}'
+        data-index='{{index}}'
+        data-lock='{{item.isUnlock}}'
+        bindtap="tagClick">
+    <view class="img_layout">
+      <image
+            class="item_image"
+            src="{{item.cover}}"
+            lazy-load="true">
+      </image>
+    </view>
+    <view class="text_zone">
+      <text>{{item.name}}</text>
+      <block wx:if="{{item.isUnlock == '0'}}">
+        <view class="prize"
+              wx:if="{{item.unlockType == '3'}}">
+          <image src="../../images/icon_coin.png"></image>
+          <text>￥{{item.price}}</text>
+        </view>
+        <view class="prize normal_btn" wx:else>立即装扮</view>
+      </block>
+      <block wx:else>
+        <view class="prize normal_btn">立即装扮</view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="pop_loading_layout {{ loadingShow ? 'loading_show' : ''}}">
+  <template is="popLoading"/>
+</view>
+<popAuthorize
+          is-login="{{isLoginTemplate}}"
+          authorize-show="{{authorizeShow}}"
+          bindauthorizeclose="authorizeClose"></popAuthorize>
+</view>

@@ -1,0 +1,32 @@
+<!--result.wxml-->
+<view class="page result_page">
+  <canvas  wx:if="{{!canvasHide}}" class="cover" canvas-id="cover"/>
+  <canvas  wx:if="{{!canvasHide}}" class="{{ isToTop ? 'toTop' : ''}}"  style="height : {{picWidth * 1.28}}px" canvas-id="poster"/>
+
+  <view class="result_data {{isIcon ? 'is_icon' : ''}}">
+    <view class="result_img_layout">
+      <image class="img_show" mode="widthFix" src="{{imgSrc}}" bindtap="previewImage"></image>
+    </view>
+    <text class="blod">已保存至相册</text>
+    <text class="tips">(点击图片预览可长按转发)</text>
+    <view class="result_btns_layout">
+      <view
+        wx-if="{{!isIcon}}"
+        class="result_btn save_as_icon"
+        bindtap="saveAsIcon">
+        <image mode="widthFix" src="../../images/result/icon_save.png"></image>
+        <text>保存为头像</text>
+      </view>
+      <view
+        class="result_btn save_as_poster"
+        bindtap="saveAsPoster">
+        <image mode="widthFix" src="../../images/result/icon_poster.png"></image>
+        <text>生成创意海报</text>
+      </view>
+      <button class="result_btn on_share" open-type="share" hover-class="none">
+        <image mode="widthFix" src="../../images/result/icon_share.png"></image>
+        <text>分享给好友</text>
+      </button>
+    </view>
+  </view>
+</view>

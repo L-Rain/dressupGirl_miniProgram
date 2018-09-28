@@ -1,0 +1,139 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+
+/* body全局设置 */
+page{
+  background: #fff;
+  font-size: 26rpx;
+  font-weight: 400;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+.pr {
+  position: relative;
+}
+.pa {
+  position: absolute;
+}
+.pf {
+  position: fixed;
+}
+button {
+  box-sizing :initial;
+  padding: 0;
+  margin: 0;
+  background: none;
+  font-size: 0;
+  line-height: initial;
+}
+button::after {
+  border: 0;
+}
+.flex_both {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* 左右布局 */
+.left_layer {
+  display: flex;
+  align-items:center;
+}
+.right_layer {
+  display: flex;
+  align-items:center;
+}
+
+
+/* 提示层 */
+.msg_tips {
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #f9f9f9;
+  text-align: center;
+  font-size: 28rpx;
+  color: #d0d0d0;
+  font-weight: 100;
+}
+.loading_text {
+  text-align: center;
+  height: 100rpx;
+  color: #d0d0d0;
+  line-height: 100rpx;
+  padding-bottom: 20rpx;
+}
+
+
+/* loading层 */
+.pop_loading_layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: -1;
+  transition: all ease-out 0.3s;
+}
+.loading_show {
+  opacity: 1;
+  z-index: 5;
+}
+.pop_loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform : translate(-50%,-50%);
+  text-align: left;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 20rpx 60rpx rgba(0,0,0,0.1);
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* 限时特惠 */
+.discount_icon {
+  display: none;
+  position: fixed;
+  z-index: 4;
+  top: 55%;
+  right: 1rem;
+  width: 130rpx;
+  image {
+    display: block;
+    width: 100%;
+    height:inherit;
+  }
+}
+.discount_icon_edit {
+  display: none;
+  position: absolute;
+  z-index: 6;
+  bottom: 120rpx;
+  right: 0.2rem;
+  width: 130rpx;
+  image {
+    display: block;
+    width: 100%;
+    height:inherit;
+  }
+}
+.discount_show {
+  display: block;
+}
+
+

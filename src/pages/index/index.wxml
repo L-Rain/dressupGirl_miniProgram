@@ -1,0 +1,52 @@
+<!--index.wxml-->
+<import src="../../templates/loading.wxml"/>
+
+
+<view class="page index_page">
+<image class="page_bg" mode="scaleToFill" src="../../images/index/bg_line.png"></image>
+<!-- <button class="login_test" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button> -->
+<!-- <button class="login_test" bindtap="callUpLogin">授权登录</button> -->
+<view class="main_layout">
+  <image class="main_bg" mode="widthFix" src="../../images/index/main_bg.png"></image>
+</view>
+<view class="index_bottom">
+  <view class="bottom_layout">
+    <image class="start_btn" bindtap="goToEditor" src="../../images/index/btn_start.png"></image>
+    <view class="bottom_btns">
+      <!-- <button open-type="share" class="left_btn">
+        <image mode="widthFix" src="../../images/index/btn_love.png"></image>
+        <text>喊人来玩</text>
+      </button> -->
+      <view class="left_btn"
+        bindtap="goToDressup"
+        >
+        <image mode="widthFix" src="../../images/index/btn_clothes.png"></image>
+        <text>精选装扮</text>
+      </view>
+      <view class="right_btn"
+        bindtap="goToStore"
+        >
+        <image  mode="widthFix" src="../../images/index/btn_shop.png"></image>
+        <text>素材商店</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="pop_loading_layout {{ loadingShow ? 'loading_show' : ''}}">
+  <template is="popLoading"/>
+</view>
+<popAuthorize
+          is-login="{{isLoginTemplate}}"
+          authorize-show="{{authorizeShow}}"
+          bindauthorizeclose="authorizeClose"></popAuthorize>
+<saleDiscount
+          discount-detail="{{discountDetail}}"
+          discount-show="{{discountShow}}"
+          has-buy="{{hasBuy}}"
+          bindbuydiscount="buyDiscount"
+          bindloginclose="discountClose"></saleDiscount>
+<view class="discount_icon {{hasDiscount ? 'discount_show' : ''}}"
+      bindtap="discountClick">
+  <image mode="widthFix" src="{{discountIcon}}"></image>
+</view>
+</view>

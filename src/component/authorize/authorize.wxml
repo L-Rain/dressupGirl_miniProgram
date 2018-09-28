@@ -1,0 +1,20 @@
+<!--component/authorize/authorize.wxml-->
+<view class="pop_login {{ popShow ? 'pop_login_active' : ''}}">
+  <view class="pop_bg"></view>
+  <view class='login_layout'>
+    <image
+      bindtap="closePop"
+      src="../../images/btn_close.png"
+      class="close_btn"></image>
+    <block wx:if="{{isLogin}}">
+      <text>欸？妳还没有登录哦~</text>
+      <text>点击授权登录进入下一步操作吧 ❤</text>
+      <button class="login_btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">使用微信登录</button>
+    </block>
+    <block wx:else>
+      <text>妳还没有授权读取相册~</text>
+      <text>*下载保存贴纸需要读取相册权限*</text>
+      <button class="login_btn" open-type="openSetting" bindopensetting="bindopensetting">授权使用相册</button>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,76 @@
+<!--dressList.wxml-->
+<import src="../../templates/loading.wxml"/>
+
+<view class="page dress_page">
+<view class="main_content">
+  <block  wx:for="{{dressupList}}"
+          wx:key="{{item.name}}">
+    <block wx:if="{{item.unlockType !== '0'}}">
+      <block wx:if="{{item.isUnlock == '0'}}">
+        <view class="list_layout"
+              data-id="{{item.productId}}"
+              data-type="{{item.unlockType}}"
+              data-json="{{item.dressupJson}}"
+              bindtap="pageListPay">
+          <view class="img_layout">
+            <image
+                  class="item_image"
+                  mode="widthFix"
+                  src="{{item.preview}}"
+                  lazy-load="true">
+            </image>
+          </view>
+          <view class="text_zone">
+            <text>{{item.name}}</text>
+            <view class="prize">
+              <image src="../../images/icon_coin.png"></image>
+              <text>￥{{item.price}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="list_layout"
+              data-json="{{item.dressupJson}}"
+              bindtap='goToEditor'>
+          <view class="img_layout">
+            <image
+                  class="item_image"
+                  mode="widthFix"
+                  src="{{item.preview}}"
+                  lazy-load="true">
+            </image>
+          </view>
+          <view class="text_zone">
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+      </block>
+    </block>
+    <block wx:else>
+      <view class="list_layout"
+            data-json="{{item.dressupJson}}"
+            bindtap='goToEditor'>
+        <view class="img_layout">
+          <image
+                class="item_image"
+                mode="widthFix"
+                src="{{item.preview}}"
+                lazy-load="true">
+          </image>
+        </view>
+        <view class="text_zone">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </block>
+  </block>
+</view>
+<view class="pop_loading_layout {{ loadingShow ? 'loading_show' : ''}}">
+  <template is="popLoading"/>
+</view>
+<popAuthorize
+          is-login="{{isLoginTemplate}}"
+          authorize-show="{{authorizeShow}}"
+          bindauthorizeclose="authorizeClose"></popAuthorize>
+</view>

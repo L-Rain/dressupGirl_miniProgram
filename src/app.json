@@ -1,0 +1,15 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/store/store",
+    "pages/result/result",
+    "pages/dressList/dressList",
+    "pages/editor/editor"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#ffc4db",
+    "navigationBarTitleText": "装扮少女",
+    "navigationBarTextStyle":"#fff"
+  }
+}
